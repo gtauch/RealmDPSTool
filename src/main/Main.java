@@ -1,6 +1,9 @@
-package a;
+package main;
 
 import javax.swing.SwingUtilities;
+
+import enums.Stat;
+import enums.Weapon;
 
 public class Main {
 
@@ -71,13 +74,16 @@ public class Main {
 //	}
 //
 	public static double getDPSatDefense(int defense) {
-//		double dpsBeforeDefense = ((player.weapon.averageDamage * (0.5 + player.getStat(Stat.Attack)/50)) * player.weapon.shots) * (1.5 + 6.5*(player.getStat(Stat.Dexterity)/75)) * player.weapon.rateOfFire;
-//		double dps = dpsBeforeDefense - (player.weapon.shots*defense);
-//		if (dps < dpsBeforeDefense * .1) {
-//			dps = dpsBeforeDefense * .1;
-//		}
-//		
-		return 0;//dps;
+		double dps = 0;
+		
+		for (Projectile projectile : player.weapon.getProjectiles()) {
+			dps += (projectile.getAverageDamage() * 
+					(0.5 + player.getStat(Stat.Attack)/50) * 
+					(1.5 + 6.5*(player.getStat(Stat.Dexterity)/75)) *
+					projectile.getRateOfFire())
+					- defense;
+		}
+		return dps;
 	}
 
 	

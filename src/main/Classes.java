@@ -1,11 +1,12 @@
-package a;
+package main;
 
 import java.util.EnumMap;
 import java.util.Map;
 
-import a.Ability.AbilityType;
-import a.Armor.ArmorType;
-import a.Weapon.WeaponType;
+import enums.Stat;
+import enums.Ability.AbilityType;
+import enums.Armor.ArmorType;
+import enums.Weapon.WeaponType;
 
 public enum Classes {
 	Rogue(Map.of(

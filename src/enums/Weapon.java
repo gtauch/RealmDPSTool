@@ -1,16 +1,18 @@
-package a;
+package enums;
 
 import java.util.EnumMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import main.Enchantable;
+import main.Projectile;
+import main.StatUtils;
+
 public enum Weapon implements Enchantable {
 	None(WeaponType.None,
 		new LinkedList<>(List.of(
-	        new Projectile(15, 20, 7.04, 1, false, true),
-	        new Projectile(5, 10, 7.04, 1, true, true),
-	        new Projectile(5, 10, 7.04, 1, true, true)
+				
 	    )),
 		Map.of()),
 //	
@@ -240,18 +242,18 @@ public enum Weapon implements Enchantable {
 
 //	int shots, minDamage, maxDamage;
 	double averageDamage;
-	LinkedList<Projectile> projectiles;
-    EnumMap<Stat, Double> stats;
+	private LinkedList<Projectile> projectiles;
+    private EnumMap<Stat, Double> stats;
 	LinkedList<Enchantment> enchantments = new LinkedList<Enchantment>();
 
-	WeaponType type;
+	private WeaponType type;
 
 	Weapon(WeaponType typeIn, LinkedList<Projectile> projectilesIn, Map<Stat, Number> statsIn) {
-        stats = StatUtils.buildStats(statsIn);
-        projectiles = projectilesIn;
-		type = typeIn;
+        setStats(StatUtils.buildStats(statsIn));
+        setProjectiles(projectilesIn);
+		setType(typeIn);
 		
-		for (Projectile projectile : projectiles) {
+		for (Projectile projectile : getProjectiles()) {
 			averageDamage += projectile.getAverageDamage();
 		}
 	}
@@ -260,4 +262,28 @@ public enum Weapon implements Enchantable {
     public LinkedList<Enchantment> getEnchantments() {
         return enchantments;
     }
+
+	public EnumMap<Stat, Double> getStats() {
+		return stats;
+	}
+
+	public void setStats(EnumMap<Stat, Double> stats) {
+		this.stats = stats;
+	}
+
+	public WeaponType getType() {
+		return type;
+	}
+
+	public void setType(WeaponType type) {
+		this.type = type;
+	}
+
+	public LinkedList<Projectile> getProjectiles() {
+		return projectiles;
+	}
+
+	public void setProjectiles(LinkedList<Projectile> projectiles) {
+		this.projectiles = projectiles;
+	}
 }

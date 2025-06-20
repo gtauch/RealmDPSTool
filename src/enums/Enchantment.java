@@ -1,7 +1,9 @@
-package a;
+package enums;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import main.Player;
 
 public enum Enchantment {
 AttackBonus(new Stat [] {Stat.Attack},new double [] {1.4, 2.2, 3, 3.8}, new ArrayList<Label>(Arrays.asList(Label.SingleStat, Label.Attack, Label.FlatBonus))),
@@ -16,7 +18,7 @@ AttackBonus(new Stat [] {Stat.Attack},new double [] {1.4, 2.2, 3, 3.8}, new Arra
 	Stat [] stat;
 	double [] tierValues;
 	ArrayList<Label> types;
-	int tier;
+	private int tier;
 	
 	Enchantment(Stat [] effectedStatsIn, double [] tierValuesIn, ArrayList<Label> typesIn){
 		stat = effectedStatsIn;
@@ -24,13 +26,21 @@ AttackBonus(new Stat [] {Stat.Attack},new double [] {1.4, 2.2, 3, 3.8}, new Arra
 		types = typesIn;
 	}
 
-	void apply(Player player) {
+	public void apply(Player player) {
 		if (types.contains(Label.FlatBonus)) {
-			player.setStat(stat[0], player.getStat(stat[0]) + tierValues[tier]);
+			player.setStat(stat[0], player.getStat(stat[0]) + tierValues[getTier()]);
 		}
 		
 		if (types.contains(Label.RelativeBonus) || types.contains(Label.ConversionBonus)) {
-			player.setStat(stat[0], player.getStat(stat[0]) + (player.getBonusStat(stat[1]) * (tierValues[tier]/100)));
+			player.setStat(stat[0], player.getStat(stat[0]) + (player.getBonusStat(stat[1]) * (tierValues[getTier()]/100)));
 		}				
+	}
+
+	public int getTier() {
+		return tier;
+	}
+
+	public void setTier(int tier) {
+		this.tier = tier;
 	}
 }

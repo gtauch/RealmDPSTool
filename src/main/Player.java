@@ -1,6 +1,13 @@
-package a;
+package main;
 
 import java.util.EnumMap;
+
+import enums.Ability;
+import enums.Armor;
+import enums.Enchantment;
+import enums.Ring;
+import enums.Stat;
+import enums.Weapon;
 
 public class Player {
 	
@@ -37,17 +44,17 @@ public class Player {
     	stats.clear();
     	stats.putAll(classChoice.stats);
     	
-    	for (Stat stat : weapon.stats.keySet()) {
-    		setStat(stat, getStat(stat) + weapon.stats.get(stat));
+    	for (Stat stat : weapon.getStats().keySet()) {
+    		setStat(stat, getStat(stat) + weapon.getStats().get(stat));
     	}
-    	for (Stat stat : ability.stats.keySet()) {
-    		setStat(stat, getStat(stat) + ability.stats.get(stat));
+    	for (Stat stat : ability.getStats().keySet()) {
+    		setStat(stat, getStat(stat) + ability.getStats().get(stat));
     	}
-    	for (Stat stat : armor.stats.keySet()) {
-    		setStat(stat, getStat(stat) + armor.stats.get(stat));
+    	for (Stat stat : armor.getStats().keySet()) {
+    		setStat(stat, getStat(stat) + armor.getStats().get(stat));
     	}
-    	for (Stat stat : ring.stats.keySet()) {
-    		setStat(stat, getStat(stat) + ring.stats.get(stat));
+    	for (Stat stat : ring.getStats().keySet()) {
+    		setStat(stat, getStat(stat) + ring.getStats().get(stat));
     	}
     	
     	for (Enchantment enchant : ability.getEnchantments()) {
@@ -65,7 +72,7 @@ public class Player {
     	
     }
 
-	double getBonusStat(Stat stat) {       
+	public double getBonusStat(Stat stat) {       
         return stats.get(stat) - classChoice.stats.get(stat);
 	}
 }

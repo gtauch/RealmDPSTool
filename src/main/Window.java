@@ -1,10 +1,15 @@
-package a;
+package main;
 
 import javax.swing.*;
 
-import a.Ability.AbilityType;
-import a.Armor.ArmorType;
-import a.Weapon.WeaponType;
+import enums.Ability;
+import enums.Armor;
+import enums.Ring;
+import enums.Stat;
+import enums.Weapon;
+import enums.Ability.AbilityType;
+import enums.Armor.ArmorType;
+import enums.Weapon.WeaponType;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -177,19 +182,19 @@ public class Window extends JFrame {
     	armorBox.removeAllItems();
 
         for (Weapon weapon : Weapon.values()) {
-        	if (weapon.type == Classes.valueOf(classBox.getSelectedItem().toString()).weaponType || weapon.type == WeaponType.None) {
+        	if (weapon.getType() == Classes.valueOf(classBox.getSelectedItem().toString()).weaponType || weapon.getType() == WeaponType.None) {
                 weaponBox.addItem(weapon.toString());
         	}
         }
     	
         for (Ability ability : Ability.values()) {
-        	if (ability.type == Classes.valueOf(classBox.getSelectedItem().toString()).abilityType || ability.type == AbilityType.None) {
+        	if (ability.getType() == Classes.valueOf(classBox.getSelectedItem().toString()).abilityType || ability.getType() == AbilityType.None) {
         		abilityBox.addItem(ability.toString());
         	}
         }
         
         for (Armor armor : Armor.values()) {
-        	if (armor.type == Classes.valueOf(classBox.getSelectedItem().toString()).armorType || armor.type == ArmorType.None) {
+        	if (armor.getType() == Classes.valueOf(classBox.getSelectedItem().toString()).armorType || armor.getType() == ArmorType.None) {
                 armorBox.addItem(armor.toString());
         	}
         }

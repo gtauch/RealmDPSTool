@@ -1,7 +1,9 @@
-package a;
+package main;
 
 import java.util.EnumMap;
 import java.util.Map;
+
+import enums.Stat;
 
 public class StatUtils {
     public static EnumMap<Stat, Double> buildStats(Map<Stat, Number> input) {
